@@ -1,29 +1,25 @@
-const { Sequelize, DataTypes, Model } = require('sequelize')
-const sequelize = new Sequelize(process.env.PG_URL)
-
-//model
-class Menu extends Model{}
-    Menu.init({
-        food_id:{
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        order_name:{
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        food_name:{
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-    }, {
-        sequelize,
-        modelName: 'Menu',
-        tableName: 'menu',
-        timestamps: false
-    })
-
-
-//export
-module.export = Menu
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Menu extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  }
+  Menu.init({
+    food_id: DataTypes.INTEGER,
+    order_name: DataTypes.STRING,
+    food_name: DataTypes.STRING
+  }, {
+    sequelize,
+    modelName: 'Menu',
+  });
+  return Menu;
+};
