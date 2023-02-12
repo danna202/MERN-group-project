@@ -14,12 +14,28 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Checkout.init({
-    order_name: DataTypes.STRING,
-    price: DataTypes.INTEGER,
-    total_cost: DataTypes.INTEGER
+    order_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    order_name:{
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    price:{
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }, 
+    total_cost:{
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    } 
   }, {
     sequelize,
     modelName: 'Checkout',
+    tableName: 'checkout',
+    timestamps: false
   });
   return Checkout;
 };

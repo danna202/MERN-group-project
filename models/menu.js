@@ -14,12 +14,24 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Menu.init({
-    food_id: DataTypes.INTEGER,
-    order_name: DataTypes.STRING,
-    food_name: DataTypes.STRING
+    food_id:{
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+    },
+    order_name:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    food_name:{
+        type: DataTypes.STRING,
+        allowNull:false,
+    }
   }, {
     sequelize,
     modelName: 'Menu',
+    tableName: 'menu',
+    timestamps: false
   });
   return Menu;
 };
