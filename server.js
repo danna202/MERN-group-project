@@ -15,6 +15,10 @@ app.get('/', (req,res) => {
     })
 })
 
+//controllers 
+const menuController = require('./controllers/menu_controller')
+app.use('/menu', menuController)
+
 //Listen
 app.listen(process.env.PORT, () => {
     console.log(`Listening on port: ${process.env.PORT}`)
