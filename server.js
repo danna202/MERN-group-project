@@ -18,6 +18,8 @@ app.get('/', (req,res) => {
 //controllers 
 const menuController = require('./controllers/menu_controller')
 app.use('/menu', menuController)
+const orderController = require('./controllers/order_controller')
+app.use('/order', orderController)
 
 //Listen
 app.listen(process.env.PORT, () => {
