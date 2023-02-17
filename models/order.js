@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     order_id: {
       type: DataTypes.INTEGER,
       allowNull: false
-    }
+    },
     food_name: {
       type: DataTypes.STRING,
       allowNull: false
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     price: {
       type: DataTypes.INTEGER,
       allowNull: false
-    } 
+    },
     total_price: {
       type: DataTypes.INTEGER,
       allowNull: false
