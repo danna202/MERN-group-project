@@ -20,8 +20,6 @@ const menuController = require('./controllers/menu_controller')
 app.use('/menu', menuController)
 const orderController = require('./controllers/order_controller')
 app.use('/order', orderController)
-const checkoutController = require('./controllers/checkout_controller')
-app.use('/checkout', checkoutController)
 
 //Listen
 app.listen(process.env.PORT, () => {
