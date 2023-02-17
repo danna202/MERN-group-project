@@ -1,7 +1,7 @@
 //dependencies 
 const orders = require('express').Router()
 const db = require('../models')
-const { Order } = db
+const { Order, Menu } = db
 
 //orders 
 orders.get('/', async (req,res) => {
@@ -17,8 +17,14 @@ orders.get('/', async (req,res) => {
 orders.get('/:id', async (req,res) => {
     try{
         const foundOrder = await Order.findOne({
-            where: { order_id: req.params.id }
+            where: { name: req.params.id },
+            include: { 
+                model: Menu, 
+                as: "menu",
+                where: { [Op.like]: `%${req.query.name ? req.query.name: ''}%`}
+            }
         })
+        res.status(200).json(foundOrder)
     }catch(err) {
         res.status(200).json(err)
     }

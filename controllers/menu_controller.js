@@ -1,7 +1,7 @@
 //dependencies 
 const menus = require('express').Router()
 const db = require('../models')
-const { Menu } = db
+const { Menu, Order } = db
 const { Op } = require('sequelize')
 
 //menu
@@ -23,7 +23,12 @@ menus.get('/', async (req,res) => {
 menus.get('/:id', async (req,res) => {
     try{
         const foundItem = await Menu.findOne({
-            where: { food_id: req.params.id}
+            where: { name: req.params.id},
+            include: { 
+                model: Order, 
+                as: "order",
+                where: { [Op.like]: `%${req.query.name ? req.query.name: ''}%`}
+            }
         })
         res.status(200).json(foundItem)
     }catch(err) {
