@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model, INTEGER
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Order extends Model {
@@ -14,23 +14,30 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Order.init({
+    food_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     order_id: {
       type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    food_id:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    food_name:{
+      allowNull: false
+    }
+    food_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
+    },
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    } 
+    total_price: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     } 
   }, {
     sequelize,
     modelName: 'Order',
-    tableName: 'orders',
+    tableName: 'order',
     timestamps: false
   });
   return Order;

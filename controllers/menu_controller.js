@@ -49,7 +49,7 @@ menus.put('/:id', async (req,res) => {
     try{
         const updatedMenu = await Menu.update(req.body, {
             where: {
-                menu_id: req.params.id
+                food_id: req.params.id
             }
         })
         res.status(200).json({
@@ -65,7 +65,7 @@ menus.delete('/:id', async (req,res) => {
     try{ 
         const deletedMenu = await Menu.destroy({
             where: {
-                menu_id: req.params.id
+                food_id: req.params.id
             }
         })
         res.status(200).json({

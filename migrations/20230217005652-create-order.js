@@ -2,33 +2,32 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('checkouts', {
-      checkout_id: {
+    await queryInterface.createTable('orders', {
+      order_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      order_name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      order_id: {
+      food_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: false
+      },
+      food_name: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
       price: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
-      total_cost: {
+      total_price: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
-    
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Checkouts');
+    await queryInterface.dropTable('orders');
   }
 };
