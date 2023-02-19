@@ -3,25 +3,32 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('menus', {
-      food_id: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      order_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       food_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       customer_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       price: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DECIMAL,
+        allowNull: false
       },
-      order_id: {
-        type: Sequelize.INTEGER
+      descript: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
-
     });
   },
   async down(queryInterface, Sequelize) {

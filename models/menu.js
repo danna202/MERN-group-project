@@ -14,10 +14,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Menu.init({
-    food_id:{
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      allowNull: false
+    },
+    order_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }, 
     food_name: {
       type: DataTypes.STRING,
@@ -28,17 +32,17 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     price: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL,
       allowNull: false
     },
-    order_id:{
-      type: DataTypes.INTEGER,
+    descript: {
+      type: DataTypes.STRING,
       allowNull: false
-    } 
+    },
   }, {
     sequelize,
     modelName: 'Menu',
-    tablename: 'menu',
+    tableName: 'menus',
     timestamps: false
   });
   return Menu;

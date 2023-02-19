@@ -2,21 +2,21 @@
   "development": {
     "username": "postgres",
     "password": "Green4King230!",
-    "database": "Orderin",
+    "database": "OrderIn",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
     "username": "postgres",
     "password": "Green4King230!",
-    "database": "Orderin_test",
+    "database": "OrderIn_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
     "username": "postgres",
     "password": "Green4King230!",
-    "database": "Orderin_production",
+    "database": "OrderIn_production",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }

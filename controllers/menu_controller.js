@@ -8,7 +8,7 @@ const { Op } = require('sequelize')
 menus.get('/', async (req,res) => {
     try { 
         const foundItem = await Menu.findAll({
-            order: [ [ 'food_id', 'ASC'] ],
+            order: [ [ 'order_id', 'ASC'] ],
             where: {
                 food_name: { [Op.like]: `%${req.query.name ? req.query.name: ''}%`}
             }
