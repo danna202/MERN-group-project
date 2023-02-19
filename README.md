@@ -3,6 +3,7 @@ Milestone Project 2
 Software Development Program: Milestone Project II
 
 Project participants:
+    
     *Chase Key
     
     *Gabriel Salinas
