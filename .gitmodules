@@ -1,0 +1,6 @@
+[submodule "front-end"]
+	path = front-end
+	url = https://github.com/danna202/MERN-group-project.git
+[submodule "front-end2"]
+	path = front-end2
+	url = https://github.com/danna202/MERN-group-project.git
