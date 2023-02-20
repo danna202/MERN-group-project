@@ -8,7 +8,7 @@ const { Op } = require('sequelize')
 menus.get('/', async (req,res) => {
     try { 
         const foundItem = await Menu.findAll({
-            order: [ [ 'order_id', 'ASC'] ],
+            order: [ [ 'id', 'ASC'] ],
             where: {
                 food_name: { [Op.like]: `%${req.query.name ? req.query.name: ''}%`}
             }
@@ -23,7 +23,7 @@ menus.get('/', async (req,res) => {
 menus.get('/:id', async (req,res) => {
     try{
         const foundItem = await Menu.findOne({
-            where: { food_id: req.params.id}
+            where: { order_id: req.params.id }
         })
         res.status(200).json(foundItem)
     }catch(err) {
@@ -44,21 +44,29 @@ menus.post('/', async (req,res) => {
     }
 })
 
-//update menu item
-menus.put('/:id', async (req,res) => {
-    try{
-        const updatedMenu = await Menu.update(req.body, {
-            where: {
-                food_id: req.params.id
-            }
-        })
-        res.status(200).json({
-            message: `Updated ${updatedMenu} Menu`
-        })
-    }catch(err){
-        res.status(500).json(err)
+// update menu item
+menus.put('/:id', async (req, res) => {
+    try {
+      const { food_name, description, price } = req.body;
+      const updatedMenu = await Menu.update(
+        { food_name, description, price },
+        {
+          where: { id: req.params.id },
+          returning: true, // include the updated item in the response
+          plain: true, // return only the updated item, not a wrapper object
+        }
+      );
+      if (updatedMenu[0] === 0) {
+        // no rows were updated
+        res.status(404).json({ message: 'Menu item not found' });
+      } else {
+        // send the updated item back to the client
+        res.status(200).json(updatedMenu[1]);
+      }
+    } catch (err) {
+      res.status(500).json(err);
     }
-})
+  });
 
 //delete menu item
 menus.delete('/:id', async (req,res) => {
