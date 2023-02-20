@@ -12,7 +12,7 @@ function App() {
   return (
     <Router>
       <header>
-        <h1 className="App">Order-INN</h1>
+        <h1 className="App">Order-UPP</h1>
 
         <NavBar />
       
