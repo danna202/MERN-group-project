@@ -2,9 +2,12 @@
 const express = require('express')
 const app = express()
 const { Sequelize } = require('sequelize')
+const cors = require('cors')
+
 
 //Configuration 
 require('dotenv').config()
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
@@ -18,8 +21,7 @@ app.get('/', (req,res) => {
 //controllers 
 const menuController = require('./controllers/menu_controller')
 app.use('/menu', menuController)
-const orderController = require('./controllers/order_controller')
-app.use('/order', orderController)
+
 
 //Listen
 app.listen(process.env.PORT, () => {
