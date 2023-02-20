@@ -69,18 +69,19 @@ menus.put('/:id', async (req, res) => {
 
 //delete menu item
 menus.delete('/:id', async (req,res) => {
-    try{ 
-        const deletedMenu = await Menu.destroy({
-            where: {
-                order_id: req.params.id
-            }
-        })
-        res.status(200).json({
-            message: `Deleted ${deletedMenu} from Menu`
-        })
-    }catch(err) {
-        res.status(500).json(err)
-    }
+  try{ 
+    console.log(req.params.id); // Check that the correct id is being received
+    const deletedMenu = await Menu.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    res.status(200).json({
+      message: `Deleted ${deletedMenu} from Menu`
+    })
+  }catch(err) {
+    res.status(500).json(err)
+  }
 })
 
 //export
