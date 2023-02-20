@@ -30,19 +30,24 @@ menus.get('/:id', async (req,res) => {
         res.status(500).json(err)
     }
 })
-
-//create menu item
-menus.post('/', async (req,res) => {
-    try{
-        const newItem = await Menu.create(req.body)
-        res.status(200).json({
-            message:'Created new Menu item!',
-            data: newItem
-        })
-    }catch(err){
-        res.status(500).json(err)
+//create Item
+menus.post('/', async (req, res) => {
+    try {
+      const newItem = await Menu.create({
+        order_id: req.body.order_id,
+        food_name: req.body.food_name,
+        customer_name: req.body.customer_name,
+        price: req.body.price,
+        description: req.body.description,
+      });
+      res.status(201).json({
+        message: 'Created new Menu item!',
+        data: newItem,
+      });
+    } catch (err) {
+      res.status(500).json(err);
     }
-})
+  });
 
 // update menu item
 menus.put('/:id', async (req, res) => {
@@ -73,7 +78,7 @@ menus.delete('/:id', async (req,res) => {
     try{ 
         const deletedMenu = await Menu.destroy({
             where: {
-                food_id: req.params.id
+                order_id: req.params.id
             }
         })
         res.status(200).json({
