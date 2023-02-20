@@ -4,6 +4,7 @@ const app = express()
 const { Sequelize } = require('sequelize')
 const cors = require('cors')
 
+
 //Configuration 
 require('dotenv').config()
 app.use(cors())

@@ -32,29 +32,23 @@ menus.get('/:id', async (req,res) => {
 })
 //create Item
 menus.post('/', async (req, res) => {
-    try {
-      const newItem = await Menu.create({
-        order_id: req.body.order_id,
-        food_name: req.body.food_name,
-        customer_name: req.body.customer_name,
-        price: req.body.price,
-        description: req.body.description,
-      });
-      res.status(201).json({
-        message: 'Created new Menu item!',
-        data: newItem,
-      });
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+  try {
+    // Exclude the "id" attribute from the request body
+    const { id, ...menuItemData } = req.body;
+    const menuItem = await Menu.create(menuItemData);
+    res.status(201).json(menuItem);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+});
 
 // update menu item
 menus.put('/:id', async (req, res) => {
     try {
-      const { food_name, description, price } = req.body;
+      const { food_name, descript, price } = req.body;
       const updatedMenu = await Menu.update(
-        { food_name, description, price },
+        { food_name, descript, price },
         {
           where: { id: req.params.id },
           returning: true, // include the updated item in the response
