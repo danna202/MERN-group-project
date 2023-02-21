@@ -66,6 +66,9 @@ function Edit(props) {
         <Button variant="primary" type="submit">
           Save Changes
         </Button>
+        <Button variant="secondary" href="http://localhost:3000/menu">
+        Cancel
+      </Button>
       </Form>
     </div>
   );

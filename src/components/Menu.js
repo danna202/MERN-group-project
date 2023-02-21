@@ -89,17 +89,17 @@ function Menu() {
   return (
     <>
       <Button variant="success" onClick={() => setShowAddModal(true)}>
-        Create Menu Item
+        Create Order
       </Button>
       <Table striped bordered hover>
   <thead>
     <tr>
       <th>ID</th>
       <th>Order ID</th>
-      <th>Food Name</th>
+      <th>Food Name/Beverage</th>
       <th>Customer Name</th>
       <th>Price</th>
-      <th>Description</th>
+      <th>Special Instructions</th>
       <th>Edit</th>
       <th>Delete</th>
     </tr>
@@ -144,7 +144,7 @@ function Menu() {
         }
       }}>
         <Modal.Header>
-          <Modal.Title>Edit Menu Item</Modal.Title>
+          <Modal.Title>Edit Order</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {selectedMenuItem && (
@@ -158,7 +158,7 @@ function Menu() {
 
       <Modal show={showAddModal} onHide={() => setShowAddModal(false)}>
         <Modal.Header>
-          <Modal.Title>Add Menu Item</Modal.Title>
+          <Modal.Title>Add Order</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <AddItem key="menuItem.Id" handleAdd={handleAdd} newMenuItem={newMenuItem} setNewMenuItem={setNewMenuItem} showAddModal={showAddModal} setShowAddModal={setShowAddModal} />
