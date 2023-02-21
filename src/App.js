@@ -17,7 +17,7 @@ function App() {
         <NavBar />
       
 
-        <div className="display">
+        <div>
           <Routes>
             <Route path="/Home" element={<Home />} />
             <Route path="/menu" element={<MenuWrapper />} />
