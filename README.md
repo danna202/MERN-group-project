@@ -2,6 +2,9 @@ Milestone Project 2
 
 Software Development Program: Milestone Project II
 
+There is a submodule for front-end:  front-end2 @ 9810697
+
+
 Project participants:
     
     *Chase Key
