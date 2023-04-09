@@ -1,5 +1,29 @@
+@import 'utilities';
+@import 'mixins';
+
+header {
+  background-color: random-color();
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .header-content {
+    padding: 40px;
+    max-width: 800px;
+    border-radius: 10px;
+  }
+
+  .App {
+    font-size: 48px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+}
+
 .navbar {
-  background-color: rgb(255, 255, 255); 
+  background-color: random-color();
   border-bottom: 1px solid #cccccc;
   width: 100%;
 
@@ -19,7 +43,7 @@
       display: block;
       width: 1.5rem;
       height: 2px;
-      background-color: #343538;
+      background-color: random-color();
       border-radius: 1px;
       margin-top: 0.25rem;
       box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.1);
@@ -30,7 +54,7 @@
       display: block;
       width: 1.5rem;
       height: 2px;
-      background-color: #343538;
+      background-color: random-color();
       border-radius: 1px;
       margin-top: 0.25rem;
       box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.1);
@@ -54,10 +78,4 @@
       }
     }
   }
-}
-
-.App {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

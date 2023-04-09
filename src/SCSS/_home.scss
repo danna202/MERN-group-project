@@ -1,0 +1,24 @@
+@import 'utilities';
+@import 'mixins';
+
+
+.home-content {
+  @include bg-image('../images/menu-background.jpg', 80%);
+  @include bg-cover;
+  @include bg-center;
+  @include flex-center;
+  padding: 40px;
+  max-width: 800px;
+  border-radius: 10px;
+
+  .sign {
+    width: 400px;
+    height: 500px;
+  }
+}
+
+.home-container {
+  @include flex-center;
+  @include random-bg();
+  background-color: random-bg-color();
+}

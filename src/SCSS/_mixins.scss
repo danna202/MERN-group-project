@@ -1,0 +1,39 @@
+@import 'utilities';
+
+
+@mixin bg-image($image, $size: auto) {
+  background-image: url($image);
+  background-size: $size;
+}
+
+@mixin bg-cover() {
+  background-size: cover;
+}
+
+@mixin bg-center() {
+  background-position: center;
+}
+
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+  
+  @mixin random-bg() {
+    $random: random(2);
+    @if $random == 1 {
+      background-color: random-bg-color();
+    } @else {
+      background-image: url('../images/background-strawberry.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+  }
+
+  @mixin app-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

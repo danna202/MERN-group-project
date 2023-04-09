@@ -5,6 +5,10 @@ import '../SCSS/_navbar.scss'
 
 function NavBar() {
   return (
+    <header>
+  <div className="header-content">
+    <h1 className="App">Order-UPP</h1>
+  </div>
     <div className="navbar-container">
       <Container>
         <Navbar bg="light" expand="lg" className="justify-content-center">
@@ -19,6 +23,7 @@ function NavBar() {
         </Navbar>
       </Container>
     </div>
+    </header>
   )
 }
 

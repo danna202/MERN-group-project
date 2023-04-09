@@ -1,0 +1,40 @@
+@function random-bg() {
+  $random: random(2);
+  @if $random == 1 {
+    $colors: (#F94144, #F8961E, #F9C74F, #90BE6D, #43AA8B, #577590, #277DA1, #2F4858);
+    @if length($colors) == 0 {
+      @warn "No colors provided for random-bg function.";
+      @return null;
+    }
+    $rand: random(length($colors));
+    $color: nth($colors, $rand);
+    @return $color;
+  } @else {
+    $images: ('../images/background-strawberry.jpg');
+    @if length($images) == 0 {
+      @warn "No images provided for random-bg function.";
+      @return null;
+    }
+    $rand: random(length($images));
+    $img: nth($images, $rand);
+    @return url('#{$img}');
+  }
+}
+
+@function random-bg-color() {
+  $colors: (#F94144, #F8961E, #F9C74F, #90BE6D, #43AA8B, #577590, #277DA1, #2F4858);
+  @if length($colors) == 0 {
+    @debug "No colors provided for random-bg-color function.";
+    @return null;
+  }
+  $color: nth($colors, random(length($colors)));
+  $luma: lightness($color) / 100;
+  $contrast-light: (1.05 + $luma) / (0.05 + $luma);
+  $contrast-dark: (0.05 + $luma) / (0.05 + 0.5 - $luma);
+  $is-dark: $contrast-light < $contrast-dark;
+  @if $is-dark {
+    @return #fff;
+  } @else {
+    @return #000;
+  }
+}
