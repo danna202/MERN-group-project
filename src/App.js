@@ -6,6 +6,7 @@ import Home from './components/Home';
 import About from './components/About';
 import Edit from './components/Edit';
 import AddItem from './components/AddItem';
+import './SCSS/style.scss';
 
 
 function App() {

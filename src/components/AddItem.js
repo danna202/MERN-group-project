@@ -27,7 +27,7 @@ function AddItem({ handleAdd, newMenuItem, setNewMenuItem, showAddModal, setShow
       </Form.Group>
 
       <Form.Group controlId="formFoodName">
-        <Form.Label>Food Name</Form.Label>
+        <Form.Label>Food/Beverage</Form.Label>
         <Form.Control
           type="text"
           placeholder="Enter Food Name"
@@ -60,7 +60,7 @@ function AddItem({ handleAdd, newMenuItem, setNewMenuItem, showAddModal, setShow
       </Form.Group>
 
       <Form.Group controlId="formDescription">
-        <Form.Label>Description</Form.Label>
+        <Form.Label>Special Instructions</Form.Label>
         <Form.Control
           as="textarea"
           rows={3}

@@ -1,5 +1,4 @@
 import React from 'react'
-import '../App.css';
 import Waitress from '../images/Waitress.jpg'
 import backgroundImage from '../images/menu-background.jpg'
 

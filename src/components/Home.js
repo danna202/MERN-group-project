@@ -1,6 +1,7 @@
 import React from 'react';
 import backgroundImage from '../images/menu-background.jpg';
 import Sign from '../images/sign.jpg'
+import '../SCSS/_home.scss'
 
 function Home() {
     return (
