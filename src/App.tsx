@@ -8,39 +8,55 @@ import Edit from './components/Edit';
 import AddItem from './components/AddItem';
 import './SCSS/style.scss';
 
+interface OrderMenuItem extends MenuItems {
+  order_id: number;
+  customer_name: string;
+}
 
-function App() {
+interface MenuItems {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+}
+
+function App(): JSX.Element {
   return (
     <Router>
-      
-
-        <NavBar />
-      
-
-        <div>
-          <Routes>
-            <Route path="/Home" element={<Home />} />
-            <Route path="/menu" element={<MenuWrapper />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/edit/:id" component={ Edit } />
-            <Route path="/add" component={ AddItem } />
-          </Routes>
-        </div>
-
-      
+      <NavBar />
+      <div>
+        <Routes>
+          <Route path="/Home" element={<Home />} />
+          <Route path="/menu" element={<MenuWrapper />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/edit/:id" element={<Edit />} />
+          <Route
+            path="/add"
+            element={
+              <AddItem
+                handleAdd={() => {}}
+                newMenuItem={{ id: 0, name: '', description: '', price: 0 }}
+                setNewMenuItem={() => {}}
+                showAddModal={false}
+                setShowAddModal={() => {}}
+              />
+            }
+          />
+        </Routes>
+      </div>
     </Router>
   );
 }
 
-function MenuWrapper() {
+function MenuWrapper(): JSX.Element | null {
   const location = useLocation();
-  const [menuItems, setMenuItems] = useState([]);
+  const [menuItems, setMenuItems] = useState<OrderMenuItem[]>([]);
 
   useEffect(() => {
     fetch('http://localhost:4000/menu')
-      .then(response => response.json())
-      .then(data => setMenuItems(data))
-      .catch(error => console.error(error));
+      .then((response: Response) => response.json())
+      .then((data: OrderMenuItem[]) => setMenuItems(data))
+      .catch((error: Error) => console.error(error));
   }, []);
 
   return location.pathname === '/menu' ? <Menu menuItems={menuItems} /> : null;

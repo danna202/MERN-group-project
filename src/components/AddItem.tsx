@@ -1,11 +1,34 @@
-import { Form, Button } from "react-bootstrap";
+import React from 'react';
+import { Form, Button } from 'react-bootstrap';
 
-function AddItem({ handleAdd, newMenuItem, setNewMenuItem, showAddModal, setShowAddModal }) {
-  const handleSubmit = (event) => {
+type MenuItem = {
+  order_id: string;
+  food_name: string;
+  customer_name: string;
+  price: string;
+  descript: string;
+};
+
+type AddItemProps = {
+  handleAdd: (event: React.FormEvent<HTMLFormElement>) => void;
+  newMenuItem: MenuItem;
+  setNewMenuItem: React.Dispatch<React.SetStateAction<MenuItem>>;
+  showAddModal: boolean;
+  setShowAddModal: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+function AddItem({
+  handleAdd,
+  newMenuItem,
+  setNewMenuItem,
+  showAddModal,
+  setShowAddModal,
+}: AddItemProps) {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     handleAdd(event);
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     setNewMenuItem((prevMenuItem) => ({
       ...prevMenuItem,
@@ -81,4 +104,4 @@ function AddItem({ handleAdd, newMenuItem, setNewMenuItem, showAddModal, setShow
   );
 }
 
-export default AddItem
+export default AddItem;

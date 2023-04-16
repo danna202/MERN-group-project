@@ -2,44 +2,63 @@ import { useState, useEffect } from "react";
 import { Table, Button, Modal } from "react-bootstrap";
 import Edit from "./Edit";
 import AddItem from "./AddItem";
+import React from "react";
 
+interface OrderMenuItem {
+  id: number;
+  order_id: string;
+  food_name: string;
+  customer_name: string;
+  price: string;
+  descript: string;
+}
+interface MenuProps {
+  menuItems: OrderMenuItem[];
+}
 
-function Menu() {
-  const [menuItems, setMenuItems] = useState([]);
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [selectedMenuItem, setSelectedMenuItem] = useState(null);
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [newMenuItem, setNewMenuItem] = useState({
+function Menu({ menuItems }: MenuProps): JSX.Element {
+  const [showEditModal, setShowEditModal] = useState<boolean>(false);
+  const [selectedMenuItem, setSelectedMenuItem] = useState<OrderMenuItem | null>(
+    null
+  );
+  const [showAddModal, setShowAddModal] = useState<boolean>(false);
+  const [newMenuItem, setNewMenuItem] = useState<OrderMenuItem>({
+    id: 0,
     order_id: "",
     food_name: "",
     customer_name: "",
     price: "",
     descript: "",
   });
+  const [menuItemsState, setMenuItems] = useState<OrderMenuItem[]>(menuItems);
 
   useEffect(() => {
     fetch("http://localhost:4000/menu")
       .then((response) => response.json())
       .then((data) => {
-        setMenuItems(data);
+        if (Array.isArray(data)) {
+          setMenuItems(data);
+        } else {
+          throw new Error("Data is not an array.");
+        }
       })
       .catch((error) => console.error(error));
   }, []);
 
-  const handleDelete = (id) => {
+  const handleDelete = (id: number) => {
     fetch(`http://localhost:4000/menu/${id}`, {
       method: "DELETE",
     })
       .then(() => {
-        const updatedMenuItems = menuItems.filter(
+        const updatedMenuItems = menuItemsState.filter(
           (menuItem) => menuItem.id !== id
         );
         setMenuItems(updatedMenuItems);
       })
       .catch((error) => console.error(error));
   };
-  
-  const handleEdit = (id, updatedMenuItem) => {
+
+  const handleEdit = (id: number, updatedMenuItem: OrderMenuItem) => {
     fetch(`http://localhost:4000/menu/${id}`, {
       method: "PUT",
       headers: {
@@ -48,7 +67,7 @@ function Menu() {
       body: JSON.stringify(updatedMenuItem),
     })
       .then(() => {
-        const updatedMenuItems = menuItems.map((menuItem) => {
+        const updatedMenuItems = menuItemsState.map((menuItem) => {
           if (menuItem.id === id) {
             return { ...menuItem, ...updatedMenuItem };
           }
@@ -61,7 +80,7 @@ function Menu() {
       .catch((error) => console.error(error));
   };
 
-  const handleAdd = (event) => {
+  const handleAdd = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     fetch("http://localhost:4000/menu", {
       method: "POST",
@@ -72,15 +91,20 @@ function Menu() {
     })
       .then((response) => response.json())
       .then((data) => {
-        setMenuItems([...menuItems, data]);
-        setNewMenuItem({
-          order_id: "",
-          food_name: "",
-          customer_name: "",
-          price: "",
-          descript: "",
-        });
-        setShowAddModal(false);
+        if (typeof data === "object") {
+          setMenuItems([...menuItemsState, data]);
+          setNewMenuItem({
+            id: 0,
+            order_id: "",
+            food_name: "",
+            customer_name: "",
+            price: "",
+            descript: "",
+          });
+          setShowAddModal(false);
+        } else {
+          throw new Error("Data is not an object.");
+        }
       })
       .catch((error) => console.error(error));
   };
@@ -92,52 +116,52 @@ function Menu() {
         Create Order
       </Button>
       <Table striped bordered hover>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Order ID</th>
-      <th>Food Name/Beverage</th>
-      <th>Customer Name</th>
-      <th>Price</th>
-      <th>Special Instructions</th>
-      <th>Edit</th>
-      <th>Delete</th>
-    </tr>
-  </thead>
-  <tbody>
-    {menuItems.map((menuItem) => (
-      <tr key={menuItem.id}>
-        <td>{menuItem.id}</td>
-        <td>{menuItem.order_id}</td>
-        <td>{menuItem.food_name}</td>
-        <td>{menuItem.customer_name}</td>
-        <td>{menuItem.price}</td>
-        <td>{menuItem.descript}</td>
-        <td>
-          <Button
-            variant="primary"
-            onClick={() => {
-              setSelectedMenuItem(menuItem);
-              setShowEditModal(true);
-            }}
-          >
-            Edit
-          </Button>
-        </td>
-        <td>
-          <Button
-            variant="danger"
-            onClick={() => handleDelete(menuItem.id)}
-          >
-            Delete
-          </Button>
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</Table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Order ID</th>
+            <th>Food Name/Beverage</th>
+            <th>Customer Name</th>
+            <th>Price</th>
+            <th>Special Instructions</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {menuItems.map((menuItem) => (
+            <tr key={menuItem.id}>
+              <td>{menuItem.id}</td>
+              <td>{menuItem.order_id}</td>
+              <td>{menuItem.food_name}</td>
+              <td>{menuItem.customer_name}</td>
+              <td>{menuItem.price}</td>
+              <td>{menuItem.descript}</td>
+              <td>
+                <Button
+                  variant="primary"
+                  onClick={() => {
+                    setSelectedMenuItem(menuItem);
+                    setShowEditModal(true);
+                  }}
+                >
+                  Edit
+                </Button>
+              </td>
+              <td>
+                <Button
+                  variant="danger"
+                  onClick={() => handleDelete(menuItem.id)}
+                >
+                  Delete
+                </Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
 
-    
+
       <Modal show={showEditModal} onHide={() => {
         if (!selectedMenuItem) {
           setShowEditModal(false);
@@ -161,10 +185,13 @@ function Menu() {
           <Modal.Title>Add Order</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <AddItem key="menuItem.Id" handleAdd={handleAdd} newMenuItem={newMenuItem} setNewMenuItem={setNewMenuItem} showAddModal={showAddModal} setShowAddModal={setShowAddModal} />
+          <AddItem key="menuItem.Id" handleAdd={handleAdd} newMenuItem={newMenuItem} showAddModal={showAddModal} setShowAddModal={setShowAddModal} setNewMenuItem={function (value: React.SetStateAction<{ order_id: string; food_name: string; customer_name: string; price: string; descript: string; }>): void {
+            throw new Error("Function not implemented.");
+          } } />
         </Modal.Body>
       </Modal>
     </>
   );
-}
+};
+
 export default Menu;
