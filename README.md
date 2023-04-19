@@ -1,5 +1,5 @@
  # Milestone Project 2  
-| ------------------- | 
+
 | Software Development Program: Milestone Project II |
 | **ORDER-UPP** | 
 
