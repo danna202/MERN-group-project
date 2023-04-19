@@ -1,7 +1,7 @@
  # Milestone Project 2  
 
-| Software Development Program: Milestone Project II |
-| **ORDER-UPP** | 
+ ### Software Development Program: Milestone Project II 
+ ## **ORDER-UPP** 
 
  Order-UPP app is where waiters can take an order and electronically submit it into an SQL database.
 
