@@ -17,11 +17,12 @@ In seperate terminals run the command npm start to make both frontend React app 
 
  API Backend will run on "http://localhost:4000" 
 
-| Method  Path  Page |
- GET  /  Home |
- POST  /  Create Order |
- PUT  /:id  Update Order |
- DELETE  /:id  Delete Order |
+| Method |  Path |  Page |
+| ------ | ----- | -------------- | 
+ GET     |   /   |     Home       |
+ POST    |   /   |  Create Order  |
+ PUT     | /:id  |  Update Order  |
+ DELETE  | /:id  |  Delete Order  |
 
 ****There is a submodule for front-end2:  front-end2 @ 9810697****
 
