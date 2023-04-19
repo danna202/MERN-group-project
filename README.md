@@ -15,7 +15,7 @@ Cd into back end run npm install.
 Cd into frontend2 run npm install. 
 In seperate terminals run the command npm start to make both frontend React app and API backend run at the sametime.
 
-| API Backend will run on "http://localhost:4000" | 
+ API Backend will run on "http://localhost:4000" 
 | Method | Path | Page | 
 | GET | / | Home | 
 | POST | / | Create Order | 
