@@ -1,21 +1,22 @@
-| Milestone Project 2  |
+ # Milestone Project 2  
 | ------------------- | 
 | Software Development Program: Milestone Project II |
 | **ORDER-UPP** | 
 
  Order-UPP app is where waiters can take an order and electronically submit it into an SQL database.
 
- **Setup**
-| You will need to setup a Postgres database inside of backend. Then create your .env environment variables 
+ ### **Setup**
+ You will need to setup a Postgres database inside of backend. Then create your .env environment variables 
+```
 PORT=4000
 PG_URI=postgres://yourusername:yourpassword@localhost:4000/OrderIn
-Next add your username and password in the Config.json file of our backend app with your username and password | 
-
+Next add your username and password in the Config.json file of our backend app with your username and password  
+```
 Cd into back end run npm install. 
 Cd into frontend2 run npm install. 
 In seperate terminals run the command npm start to make both frontend React app and API backend run at the sametime.
 
- API Backend will run on "http://localhost:4000" 
+ ### API Backend will run on (http://localhost:4000) 
 
 | Method |  Path |  Page |
 | ------ | ----- | -------------- | 
@@ -24,7 +25,15 @@ In seperate terminals run the command npm start to make both frontend React app 
  PUT     | /:id  |  Update Order  |
  DELETE  | /:id  |  Delete Order  |
 
+### App (http://localhost:3000)
 ****There is a submodule for front-end2:  front-end2 @ 9810697****
+| Path | Component | Purpose | 
+| --------- | ---------- | --------------- | 
+| /home     |  Home.js   | Home Page       | 
+| /menu     |  Menu.js   | Menu/Order Page |
+| /about    |  About.js  | About Page      |
+| /edit/:id |  Edit.js   | Edit Form       | 
+| /add      | Additem.js | Add Item From   | 
 
 
 | Credits |
